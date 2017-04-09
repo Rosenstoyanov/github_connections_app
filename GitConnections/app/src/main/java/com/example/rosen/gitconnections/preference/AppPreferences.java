@@ -40,4 +40,9 @@ public class AppPreferences {
         }
         return null;
     }
+
+    public static void clear(Context context) {
+        getPrefs(context).edit().clear().apply();
+    }
+
 }

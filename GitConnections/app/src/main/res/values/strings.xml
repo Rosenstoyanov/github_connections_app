@@ -8,4 +8,8 @@
     <!--repo row-->
     <string name="watches">Watches: %d</string>
     <string name="forks">Forks: %d</string>
+
+    <!--menu-->
+    <string name="logout">logout</string>
+    <string name="show_users">show users</string>
 </resources>

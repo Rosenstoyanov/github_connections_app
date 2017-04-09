@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group>
+        <item
+            android:id="@+id/menu_logout"
+            android:orderInCategory="1"
+            android:title="@string/logout"/>
+
+        <item
+            android:id="@+id/menu_show_users"
+            android:orderInCategory="2"
+            android:title="@string/show_users"/>
+    </group>
+
+</menu>

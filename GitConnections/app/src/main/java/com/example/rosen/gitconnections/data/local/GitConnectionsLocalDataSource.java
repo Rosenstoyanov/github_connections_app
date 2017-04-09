@@ -22,4 +22,9 @@ public class GitConnectionsLocalDataSource implements GitConnectionsDataSource {
     public void login(String userName, LoginCallback loginCallback) {
 
     }
+
+    @Override
+    public void getUserRepositories(String userName, UserRepositoriesCallback callback) {
+
+    }
 }

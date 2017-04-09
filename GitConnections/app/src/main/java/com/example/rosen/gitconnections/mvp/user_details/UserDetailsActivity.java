@@ -5,11 +5,14 @@ import android.os.Bundle;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.rosen.gitconnections.R;
+import com.example.rosen.gitconnections.application.App;
 import com.example.rosen.gitconnections.model.RepositoryDetails;
 import com.example.rosen.gitconnections.model.User;
 import com.example.rosen.gitconnections.mvp.base.BaseActivity;
@@ -82,5 +85,22 @@ public class UserDetailsActivity extends BaseActivity<UserDetailsPresenter> impl
     @Override
     public void onRepositoryDetailsFailure(String s) {
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.user_details_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.menu_logout)
+            App.getInstance().logout();
+        else if (id == R.id.menu_show_users)
+            Toast.makeText(this, "show users", Toast.LENGTH_SHORT).show();
+
+        return super.onOptionsItemSelected(item);
     }
 }
