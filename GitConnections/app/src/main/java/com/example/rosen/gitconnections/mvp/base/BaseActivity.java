@@ -10,14 +10,20 @@ import butterknife.ButterKnife;
  * Created by rosen on 09.04.17.
  */
 
-public class BaseActivity<T extends BasePresenter> extends AppCompatActivity {
+public abstract class BaseActivity<T extends BasePresenter> extends AppCompatActivity {
     protected T mPresenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(getLayoutId());
         ButterKnife.bind(this);
+        initViews();
     }
+
+    protected abstract int getLayoutId();
+
+    protected abstract void initViews();
 
     @Override
     protected void onPause() {

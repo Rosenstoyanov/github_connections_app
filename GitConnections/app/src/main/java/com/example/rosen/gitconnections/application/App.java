@@ -13,7 +13,7 @@ import com.example.rosen.gitconnections.preference.AppPreferences;
 /**
  * Created by rosen on 09.04.17.
  */
-
+//TODO: loaders NavigationUtils styles AbstractImageLoader offlineMode errorParsing
 public class App extends Application {
 
     private static App instance;

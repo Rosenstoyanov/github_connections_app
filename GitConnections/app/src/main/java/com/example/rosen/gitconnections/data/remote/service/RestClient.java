@@ -4,6 +4,7 @@ package com.example.rosen.gitconnections.data.remote.service;
 import com.example.rosen.gitconnections.settings.Settings;
 
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -18,15 +19,16 @@ public class RestClient {
 
     private static Retrofit getRestAdapter() {
 
-//        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-//        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        builder.addInterceptor(interceptor);
 
         OkHttpClient client = builder.build();
 
         Retrofit restAdapter = new Retrofit.Builder()
-                .baseUrl(Settings.EndPointUrl)
+                .baseUrl(Settings.End_Point_Url)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();

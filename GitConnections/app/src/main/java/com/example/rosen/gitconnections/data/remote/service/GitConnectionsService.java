@@ -16,16 +16,16 @@ import retrofit2.http.Path;
 
 public interface GitConnectionsService {
 
-    @GET("/users/{username}/")
+    @GET("/users/{username}")
     Call<User> getUserProfile(@Path("username") String username);
 
-    @GET("/users/{username}/repos/")
+    @GET("/users/{username}/repos")
     Call<List<RepositoryDetails>> getUserRepositoies(@Path("username") String username);
 
-    @GET("/users/{username}/followers/")
+    @GET("/users/{username}/followers")
     Call<List<FollowersFollowingUsers>> getUserFollowers(@Path("username") String username);
 
-    @GET("/users/{username}/following/")
+    @GET("/users/{username}/following")
     Call<List<FollowersFollowingUsers>> getUserFollowing(@Path("username") String username);
 
 }

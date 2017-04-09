@@ -10,6 +10,7 @@ import com.google.gson.Gson;
 public class AppPreferences {
     private static final String PREF_NAME = "app_prefs";
     private static final String PROFILE = "user";
+    private static final String USER_NAME = "user_name";
 
     private static Gson sGson = new Gson();
 
@@ -23,6 +24,14 @@ public class AppPreferences {
 
     private static String getString(Context context, String key, String def) {
         return getPrefs(context).getString(key, def);
+    }
+
+    public static void setUserName(Context context, String userName){
+        putString(context, USER_NAME, userName);
+    }
+
+    public static String getUserName(Context context){
+        return getString(context, USER_NAME, "");
     }
 
     public static void setUserProfile(User profile, Context context) {

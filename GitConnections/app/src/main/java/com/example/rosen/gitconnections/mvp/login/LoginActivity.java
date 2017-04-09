@@ -21,13 +21,16 @@ public class LoginActivity extends BaseActivity<LoginPresentor> implements Login
     AppCompatEditText mUsername;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+    protected int getLayoutId() {
+        return R.layout.activity_login;
+    }
 
+    @Override
+    protected void initViews() {
         if (AppPreferences.getUserProfile(this) != null){
             Intent intent = new Intent(this, UserDetailsActivity.class);
             startActivity(intent);
+            finish();
         }
 
         mPresenter = new LoginPresentor(this);
@@ -40,6 +43,7 @@ public class LoginActivity extends BaseActivity<LoginPresentor> implements Login
 
     @Override
     public void onLogInSuccess(User user) {
+        AppPreferences.setUserName(this, mUsername.getText().toString());
         AppPreferences.setUserProfile(user, this);
 
         Intent intent = new Intent(this, UserDetailsActivity.class);
