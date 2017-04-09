@@ -1,4 +1,4 @@
-package com.example.rosen.gitconnections.service;
+package com.example.rosen.gitconnections.data.remote.service;
 
 
 import com.example.rosen.gitconnections.settings.Settings;
@@ -15,8 +15,6 @@ public class RestClient {
 
     private static GitConnectionsService sGitConnectionsService;
 
-    public static Retrofit sRetrofit;
-
 
     private static Retrofit getRestAdapter() {
 
@@ -32,8 +30,6 @@ public class RestClient {
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();
-
-        sRetrofit = restAdapter;
 
         return restAdapter;
     }
