@@ -49,4 +49,22 @@ public class GitConnectionsRemoteDataSource implements GitConnectionsDataSource 
             }
         });
     }
+
+    @Override
+    public void getUserRepositories(final String userName, final UserRepositoriesCallback callback) {
+        mGitConnectionsService.getUserRepositoies(userName).enqueue(new Callback<List<RepositoryDetails>>() {
+            @Override
+            public void onResponse(Call<List<RepositoryDetails>> call, Response<List<RepositoryDetails>> response) {
+                if (response.isSuccessful())
+                    callback.onSuccess(response.body());
+                else
+                    callback.onError(response.errorBody().toString());
+            }
+
+            @Override
+            public void onFailure(Call<List<RepositoryDetails>> call, Throwable t) {
+                callback.onError("Something went");
+            }
+        });
+    }
 }

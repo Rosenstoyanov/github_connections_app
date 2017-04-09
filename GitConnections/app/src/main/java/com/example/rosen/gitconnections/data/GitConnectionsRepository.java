@@ -32,4 +32,9 @@ public class GitConnectionsRepository implements GitConnectionsDataSource {
     public void login(String userName, LoginCallback loginCallback) {
         mRemoteDataSource.login(userName, loginCallback);
     }
+
+    @Override
+    public void getUserRepositories(String userName, UserRepositoriesCallback callback) {
+        mRemoteDataSource.getUserRepositories(userName, callback);
+    }
 }

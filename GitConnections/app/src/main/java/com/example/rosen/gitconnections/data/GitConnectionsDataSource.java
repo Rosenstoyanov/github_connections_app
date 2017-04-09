@@ -13,7 +13,7 @@ import java.util.List;
 
 public interface GitConnectionsDataSource {
     void login(String userName, LoginCallback loginCallback);
-    void getUserRepositories(String userName);
+    void getUserRepositories(String userName, UserRepositoriesCallback callback);
 
     interface LoginCallback {
         void onLoginSuccess(User user);
