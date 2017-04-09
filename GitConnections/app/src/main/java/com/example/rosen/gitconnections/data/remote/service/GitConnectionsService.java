@@ -1,5 +1,6 @@
 package com.example.rosen.gitconnections.data.remote.service;
 
+import com.example.rosen.gitconnections.model.FollowersFollowingUsers;
 import com.example.rosen.gitconnections.model.RepositoryDetails;
 import com.example.rosen.gitconnections.model.User;
 
@@ -22,9 +23,9 @@ public interface GitConnectionsService {
     Call<List<RepositoryDetails>> getUserRepositoies(@Path("username") String username);
 
     @GET("/users/{username}/followers/")
-    Call<List<RepositoryDetails>> getUserFollowers(@Path("username") String username);
+    Call<List<FollowersFollowingUsers>> getUserFollowers(@Path("username") String username);
 
     @GET("/users/{username}/following/")
-    Call<List<RepositoryDetails>> getUserFollowing(@Path("username") String username);
+    Call<List<FollowersFollowingUsers>> getUserFollowing(@Path("username") String username);
 
 }

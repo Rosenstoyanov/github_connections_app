@@ -37,4 +37,14 @@ public class GitConnectionsRepository implements GitConnectionsDataSource {
     public void getUserRepositories(String userName, UserRepositoriesCallback callback) {
         mRemoteDataSource.getUserRepositories(userName, callback);
     }
+
+    @Override
+    public void getUserFollowers(String userName, UserFollowersCallback callback) {
+        mRemoteDataSource.getUserFollowers(userName, callback);
+    }
+
+    @Override
+    public void getUserFollowing(String userName, UserFollowingCallback callback) {
+        mRemoteDataSource.getUserFollowing(userName, callback);
+    }
 }

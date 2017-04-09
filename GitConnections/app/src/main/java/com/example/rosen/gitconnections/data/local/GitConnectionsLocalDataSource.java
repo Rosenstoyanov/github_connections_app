@@ -27,4 +27,14 @@ public class GitConnectionsLocalDataSource implements GitConnectionsDataSource {
     public void getUserRepositories(String userName, UserRepositoriesCallback callback) {
 
     }
+
+    @Override
+    public void getUserFollowers(String userName, UserFollowersCallback callback) {
+
+    }
+
+    @Override
+    public void getUserFollowing(String userName, UserFollowingCallback callback) {
+
+    }
 }
