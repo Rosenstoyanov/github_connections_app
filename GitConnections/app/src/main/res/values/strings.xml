@@ -4,4 +4,8 @@
     <!--login-->
     <string name="username">Username</string>
     <string name="login">login</string>
+
+    <!--repo row-->
+    <string name="watches">Watches: %d</string>
+    <string name="forks">Forks: %d</string>
 </resources>
