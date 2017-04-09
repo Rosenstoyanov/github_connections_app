@@ -26,7 +26,8 @@ public class ReposAdapter extends RecyclerView.Adapter<ReposAdapter.RepoHolder> 
         this.mData = new ArrayList<>();
     }
 
-    public void setmData(ArrayList<RepositoryDetails> mData) {
+    public void setData(ArrayList<RepositoryDetails> mData) {
+        this.mData.clear();
         this.mData = mData;
     }
 
@@ -47,7 +48,7 @@ public class ReposAdapter extends RecyclerView.Adapter<ReposAdapter.RepoHolder> 
         return mData != null ? mData.size() : 0;
     }
 
-    class RepoHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class RepoHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.tv_name)
         AppCompatTextView mTvName;
         @BindView(R.id.tv_description)
@@ -60,8 +61,6 @@ public class ReposAdapter extends RecyclerView.Adapter<ReposAdapter.RepoHolder> 
         public RepoHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-
-            itemView.setOnClickListener(this);
         }
 
         void bind(RepositoryDetails repositoryDetails){
@@ -70,11 +69,6 @@ public class ReposAdapter extends RecyclerView.Adapter<ReposAdapter.RepoHolder> 
             mTvForks.setText(App.getInstance().getString(R.string.forks, repositoryDetails.getForksCount()));
             mTvWatches.setText(App.getInstance().getString(R.string.watches, repositoryDetails.getWatchersCount()));
         }
-
-
-        @Override
-        public void onClick(View v) {
-
-        }
     }
+
 }

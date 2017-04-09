@@ -18,6 +18,4 @@ public interface LoginContractor {
 
         void onLogInFailure(String s);
     }
-
-
 }

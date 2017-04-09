@@ -4,8 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.example.rosen.gitconnections.mvp.login.LoginActivity;
-import com.example.rosen.gitconnections.mvp.login.LoginContractor;
+import butterknife.ButterKnife;
 
 /**
  * Created by rosen on 09.04.17.
@@ -17,6 +16,7 @@ public class BaseActivity<T extends BasePresenter> extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ButterKnife.bind(this);
     }
 
     @Override
