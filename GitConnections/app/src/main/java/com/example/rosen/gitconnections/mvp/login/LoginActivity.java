@@ -1,13 +1,12 @@
 package com.example.rosen.gitconnections.mvp.login;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.AppCompatEditText;
 import android.widget.Toast;
 
 import com.example.rosen.gitconnections.R;
 import com.example.rosen.gitconnections.model.User;
+import com.example.rosen.gitconnections.model.UserSession;
 import com.example.rosen.gitconnections.mvp.base.BaseActivity;
 import com.example.rosen.gitconnections.mvp.user_details.UserDetailsActivity;
 import com.example.rosen.gitconnections.preference.AppPreferences;
@@ -27,7 +26,7 @@ public class LoginActivity extends BaseActivity<LoginPresentor> implements Login
 
     @Override
     protected void initViews() {
-        if (AppPreferences.getUserProfile(this) != null){
+        if (AppPreferences.getUserSession(this) != null){
             Intent intent = new Intent(this, UserDetailsActivity.class);
             startActivity(intent);
             finish();
@@ -43,11 +42,11 @@ public class LoginActivity extends BaseActivity<LoginPresentor> implements Login
 
     @Override
     public void onLogInSuccess(User user) {
-        AppPreferences.setUserName(this, mUsername.getText().toString());
-        AppPreferences.setUserProfile(user, this);
+        AppPreferences.setUserSession(new UserSession(user.getUserId(), mUsername.getText().toString()), this);
 
         Intent intent = new Intent(this, UserDetailsActivity.class);
         startActivity(intent);
+        finish();
     }
 
     @Override

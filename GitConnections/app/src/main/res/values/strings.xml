@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">GitConnections</string>
 
-    <!--getUserProfile-->
+    <!--getUserSession-->
     <string name="username">Username</string>
     <string name="login">login</string>
 

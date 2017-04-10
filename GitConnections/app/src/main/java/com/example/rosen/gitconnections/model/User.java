@@ -6,13 +6,13 @@ package com.example.rosen.gitconnections.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import org.greenrobot.greendao.DaoException;
 import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.ToMany;
 
 import java.util.List;
-import org.greenrobot.greendao.annotation.Generated;
-import org.greenrobot.greendao.DaoException;
 
 @Entity
 public class User {
@@ -34,6 +34,7 @@ public class User {
     private Integer publicRepos;
     private Integer followers;
     private Integer following;
+    private String userName;
 
     @ToMany(referencedJoinProperty = "followersId")
     private List<UserFollowers> followerses;
@@ -64,9 +65,9 @@ public class User {
         this.following = following;
     }
 
-    @Generated(hash = 2023790938)
+    @Generated(hash = 2147381946)
     public User(Long userId, String avatarUrl, String name, String bio, String location, String followersUrl, String followingUrl, String reposUrl, Integer publicRepos, Integer followers,
-            Integer following) {
+            Integer following, String userName) {
         this.userId = userId;
         this.avatarUrl = avatarUrl;
         this.name = name;
@@ -78,10 +79,31 @@ public class User {
         this.publicRepos = publicRepos;
         this.followers = followers;
         this.following = following;
+        this.userName = userName;
     }
 
     @Generated(hash = 586692638)
     public User() {
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setFollowerses(List<UserFollowers> followerses) {
+        this.followerses = followerses;
+    }
+
+    public void setFollowings(List<UserFollowing> followings) {
+        this.followings = followings;
+    }
+
+    public void setRepositoryDetails(List<RepositoryDetails> repositoryDetails) {
+        this.repositoryDetails = repositoryDetails;
     }
 
     public String getAvatarUrl() {

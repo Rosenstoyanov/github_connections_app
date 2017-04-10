@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import com.example.rosen.gitconnections.db.DataBaseHelper;
+
 import butterknife.ButterKnife;
 
 /**
@@ -12,12 +14,14 @@ import butterknife.ButterKnife;
 
 public abstract class BaseActivity<T extends BasePresenter> extends AppCompatActivity {
     protected T mPresenter;
+    protected DataBaseHelper mDataBaseHelper;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
         ButterKnife.bind(this);
+        mDataBaseHelper = DataBaseHelper.getInstance();
         initViews();
     }
 
@@ -41,7 +45,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
 
 //    private boolean checkAuthenticated() {
 //        if (!(this instanceof LoginActivity)) {
-//            // check if getUserProfile
+//            // check if getUserSession
 //            if (!mApplication.isAuthenticated()) {
 //                Intent intent = new Intent(BaseActivity.this, mApplication.getLoginClass());
 //                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

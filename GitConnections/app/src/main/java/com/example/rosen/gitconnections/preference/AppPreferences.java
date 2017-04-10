@@ -4,12 +4,12 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
 
-import com.example.rosen.gitconnections.model.User;
+import com.example.rosen.gitconnections.model.UserSession;
 import com.google.gson.Gson;
 
 public class AppPreferences {
     private static final String PREF_NAME = "app_prefs";
-    private static final String PROFILE = "user";
+    private static final String USER_SESSION = "user_session";
     private static final String USER_NAME = "user_name";
 
     private static Gson sGson = new Gson();
@@ -26,23 +26,15 @@ public class AppPreferences {
         return getPrefs(context).getString(key, def);
     }
 
-    public static void setUserName(Context context, String userName){
-        putString(context, USER_NAME, userName);
+    public static void setUserSession(UserSession userSession, Context context) {
+        putString(context, USER_SESSION, userSession != null ? sGson.toJson(userSession) : null);
     }
 
-    public static String getUserName(Context context){
-        return getString(context, USER_NAME, "");
-    }
-
-    public static void setUserProfile(User profile, Context context) {
-        putString(context, PROFILE, profile != null ? sGson.toJson(profile) : null);
-    }
-
-    public static User getUserProfile(Context context) {
-        String json = getString(context, PROFILE, null);
+    public static UserSession getUserSession(Context context) {
+        String json = getString(context, USER_SESSION, null);
         if (!TextUtils.isEmpty(json)) {
             try {
-                return sGson.fromJson(json, User.class);
+                return sGson.fromJson(json, UserSession.class);
             } catch (Exception e) {
                 e.printStackTrace();
             }

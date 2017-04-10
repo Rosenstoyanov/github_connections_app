@@ -8,7 +8,6 @@ import android.widget.Toast;
 
 import com.example.rosen.gitconnections.R;
 import com.example.rosen.gitconnections.model.FollowersFollowingUsers;
-import com.example.rosen.gitconnections.model.User;
 import com.example.rosen.gitconnections.mvp.base.BaseActivity;
 import com.example.rosen.gitconnections.mvp.user_details.UserDetailsActivity;
 import com.example.rosen.gitconnections.preference.AppPreferences;
@@ -40,9 +39,9 @@ public class UsersListActivity extends BaseActivity<UsersListPresentor>
 
         Bundle bundle = getIntent().getExtras();
         if (bundle.getBoolean(Settings.EXTRA_OPEN_FOLLOWERS))
-            mPresenter.getFollowersList(AppPreferences.getUserName(this));
+            mPresenter.getFollowersList(AppPreferences.getUserSession(this).getUsername());
         else
-            mPresenter.getFollowingList(AppPreferences.getUserName(this));
+            mPresenter.getFollowingList(AppPreferences.getUserSession(this).getUsername());
     }
 
     @Override

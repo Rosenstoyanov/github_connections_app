@@ -24,7 +24,6 @@ import com.example.rosen.gitconnections.settings.Settings;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -66,8 +65,8 @@ public class UserDetailsActivity extends BaseActivity<UserDetailsPresenter> impl
             userName = getIntent().getExtras().getString(Settings.EXTRA_USERNAME);
 
         if (TextUtils.isEmpty(userName)){
-            mUser = AppPreferences.getUserProfile(this);
-            mPresenter.getUserRepositories(AppPreferences.getUserName(this));
+            mUser = mDataBaseHelper.getUser(AppPreferences.getUserSession(this).getId());
+            mPresenter.getUserRepositories(AppPreferences.getUserSession(this).getUsername());
             init(mUser);
         } else {
             mPresenter.getUserProfile(userName);
