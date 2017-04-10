@@ -12,4 +12,12 @@
     <!--menu-->
     <string name="logout">logout</string>
     <string name="show_users">show users</string>
+
+    <!--user details-->
+    <string name="following_count">Following Count: %d</string>
+    <string name="public_repos_count">Public Repos Count: %d</string>
+    <string name="followers_count">Followers Count: %d</string>
+    <string name="location">Location: %s</string>
+    <string name="name">Name: %s</string>
+    <string name="bio">Bio: %s</string>
 </resources>

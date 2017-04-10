@@ -84,11 +84,16 @@ public class UserDetailsActivity extends BaseActivity<UserDetailsPresenter> impl
                 .error(Settings.AVATAR_PLACE_HOLDER)
                 .into(mIvAvatar);
 
-        mTvUsername.setText(user.getName());
-        mTvBio.setText(user.getBio());
-        mTvFollowersCount.setText(user.getFollowers().toString());
-        mTvFollowingCount.setText(user.getFollowing().toString());
-        mTvPublicReposCount.setText(user.getPublicRepos().toString());
+        mTvUsername.setText(getString(R.string.name, user.getName()));
+        if (TextUtils.isEmpty(user.getBio()))
+            mTvBio.setVisibility(View.GONE);
+        else{
+            mTvBio.setVisibility(View.VISIBLE);
+            mTvBio.setText(getString(R.string.bio, user.getBio()));
+        }
+        mTvFollowersCount.setText(getString(R.string.followers_count, user.getFollowers()));
+        mTvFollowingCount.setText(getString(R.string.following_count, user.getFollowing()));
+        mTvPublicReposCount.setText(getString(R.string.public_repos_count, user.getPublicRepos()));
     }
 
     @OnClick({R.id.tv_followers_count, R.id.tv_following_count})

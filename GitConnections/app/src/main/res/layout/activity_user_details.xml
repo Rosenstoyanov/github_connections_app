@@ -9,54 +9,64 @@
 
     <ImageView
         android:id="@+id/iv_avatar"
-        android:layout_gravity="center_horizontal"
         android:layout_width="80dp"
-        android:layout_height="80dp" />
+        android:layout_height="80dp"
+        android:layout_gravity="center_horizontal" />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/tv_name"
-        android:gravity="center"
         android:layout_width="match_parent"
-        tools:text="Name"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="5dp"
+        tools:text="@string/name" />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/tv_bio"
-        android:gravity="center"
         android:layout_width="match_parent"
-        tools:text="Bio"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="5dp"
+        tools:text="@string/bio" />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/tv_location"
-        android:gravity="center"
         android:layout_width="match_parent"
-        tools:text="Location"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="5dp"
+        tools:text="@string/location" />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/tv_followers_count"
-        android:gravity="center"
         android:layout_width="match_parent"
-        tools:text="Followers Count"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="5dp"
+        tools:text="@string/followers_count" />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/tv_following_count"
-        android:gravity="center"
         android:layout_width="match_parent"
-        tools:text="Following Count"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="5dp"
+        tools:text="@string/following_count" />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/tv_public_repos_count"
-        android:gravity="center"
         android:layout_width="match_parent"
-        tools:text="Public Repos Count"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="5dp"
+        tools:text="@string/public_repos_count" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000000"/>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_public_repos"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 </LinearLayout>
