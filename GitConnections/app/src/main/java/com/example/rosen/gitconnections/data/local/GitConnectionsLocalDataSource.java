@@ -19,7 +19,7 @@ public class GitConnectionsLocalDataSource implements GitConnectionsDataSource {
     }
 
     @Override
-    public void login(String userName, LoginCallback loginCallback) {
+    public void getUserProfile(String userName, ProfileCallback profileCallback) {
 
     }
 

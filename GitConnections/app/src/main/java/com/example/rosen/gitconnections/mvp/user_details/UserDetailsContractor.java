@@ -12,11 +12,15 @@ import java.util.List;
 public interface UserDetailsContractor {
     interface Presenter {
         void getUserRepositories(String username);
+
+        void getUserProfile(String userName);
     }
 
     interface View {
         void onRepositoryDetailsSuccess(List<RepositoryDetails> repositories);
 
-        void onRepositoryDetailsFailure(String s);
+        void onFailure(String s);
+
+        void onUserProfileSuccess(User user);
     }
 }

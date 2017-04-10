@@ -5,8 +5,8 @@ import com.example.rosen.gitconnections.data.GitConnectionsRepository;
 import com.example.rosen.gitconnections.data.local.GitConnectionsLocalDataSource;
 import com.example.rosen.gitconnections.data.remote.GitConnectionsRemoteDataSource;
 import com.example.rosen.gitconnections.model.RepositoryDetails;
+import com.example.rosen.gitconnections.model.User;
 import com.example.rosen.gitconnections.mvp.base.BasePresenter;
-import com.example.rosen.gitconnections.mvp.login.LoginContractor;
 
 import java.util.List;
 
@@ -35,7 +35,24 @@ public class UserDetailsPresenter extends BasePresenter implements UserDetailsCo
             @Override
             public void onError(String error) {
                 if (mIsActivityRunning)
-                    mView.onRepositoryDetailsFailure(error);
+                    mView.onFailure(error);
+            }
+        });
+    }
+
+    @Override
+    public void getUserProfile(String userName) {
+        mRepository.getUserProfile(userName, new GitConnectionsDataSource.ProfileCallback() {
+            @Override
+            public void onSuccess(User user) {
+                if (mIsActivityRunning)
+                    mView.onUserProfileSuccess(user);
+            }
+
+            @Override
+            public void onError(String error) {
+                if (mIsActivityRunning)
+                    mView.onFailure(error);
             }
         });
     }

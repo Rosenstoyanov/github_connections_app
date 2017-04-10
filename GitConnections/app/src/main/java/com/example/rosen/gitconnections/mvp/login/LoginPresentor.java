@@ -22,15 +22,15 @@ public class LoginPresentor extends BasePresenter implements LoginContractor.Pre
 
     @Override
     public void attemptUserLogin(String username) {
-        mRepository.login(username, new GitConnectionsDataSource.LoginCallback() {
+        mRepository.getUserProfile(username, new GitConnectionsDataSource.ProfileCallback() {
             @Override
-            public void onLoginSuccess(User user) {
+            public void onSuccess(User user) {
                 if (mIsActivityRunning)
                     mView.onLogInSuccess(user);
             }
 
             @Override
-            public void onLoginError(String error) {
+            public void onError(String error) {
                 if (mIsActivityRunning)
                     mView.onLogInFailure(error);
             }

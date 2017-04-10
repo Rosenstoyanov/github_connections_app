@@ -55,21 +55,6 @@ public class UserDetailsActivity extends BaseActivity<UserDetailsPresenter> impl
 
     @Override
     protected void initViews() {
-        mUser = AppPreferences.getUserProfile(this);
-
-        Glide.with(this)
-                .load(mUser.getAvatarUrl())
-                .dontAnimate()
-                .fallback(Settings.AVATAR_PLACE_HOLDER)
-                .placeholder(Settings.AVATAR_PLACE_HOLDER)
-                .error(Settings.AVATAR_PLACE_HOLDER)
-                .into(mIvAvatar);
-
-        mTvUsername.setText(mUser.getName());
-        mTvBio.setText(mUser.getBio());
-        mTvFollowersCount.setText(mUser.getFollowers().toString());
-        mTvFollowingCount.setText(mUser.getFollowing().toString());
-        mTvPublicReposCount.setText(mUser.getPublicRepos().toString());
         mPresenter = new UserDetailsPresenter(this);
 
         mAdapter = new ReposAdapter();
@@ -80,11 +65,30 @@ public class UserDetailsActivity extends BaseActivity<UserDetailsPresenter> impl
         if (getIntent().getExtras() != null)
             userName = getIntent().getExtras().getString(Settings.EXTRA_USERNAME);
 
-        if (TextUtils.isEmpty(userName))
-            userName = AppPreferences.getUserName(this);
+        if (TextUtils.isEmpty(userName)){
+            mUser = AppPreferences.getUserProfile(this);
+            mPresenter.getUserRepositories(AppPreferences.getUserName(this));
+            init(mUser);
+        } else {
+            mPresenter.getUserProfile(userName);
+            mPresenter.getUserRepositories(userName);
+        }
+    }
 
-        mPresenter.getUserRepositories(userName);
+    private void init(User user){
+        Glide.with(this)
+                .load(user.getAvatarUrl())
+                .dontAnimate()
+                .fallback(Settings.AVATAR_PLACE_HOLDER)
+                .placeholder(Settings.AVATAR_PLACE_HOLDER)
+                .error(Settings.AVATAR_PLACE_HOLDER)
+                .into(mIvAvatar);
 
+        mTvUsername.setText(user.getName());
+        mTvBio.setText(user.getBio());
+        mTvFollowersCount.setText(user.getFollowers().toString());
+        mTvFollowingCount.setText(user.getFollowing().toString());
+        mTvPublicReposCount.setText(user.getPublicRepos().toString());
     }
 
     @OnClick({R.id.tv_followers_count, R.id.tv_following_count})
@@ -114,8 +118,14 @@ public class UserDetailsActivity extends BaseActivity<UserDetailsPresenter> impl
     }
 
     @Override
-    public void onRepositoryDetailsFailure(String s) {
+    public void onFailure(String s) {
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onUserProfileSuccess(User user) {
+        init(user);
+        mUser = user;
     }
 
     @Override

@@ -34,19 +34,19 @@ public class GitConnectionsRemoteDataSource implements GitConnectionsDataSource 
 
 
     @Override
-    public void login(String userName, final LoginCallback loginCallback) {
+    public void getUserProfile(String userName, final ProfileCallback profileCallback) {
         mGitConnectionsService.getUserProfile(userName).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.isSuccessful())
-                    loginCallback.onLoginSuccess(response.body());
+                    profileCallback.onSuccess(response.body());
                 else
-                    loginCallback.onLoginError(response.errorBody().toString());
+                    profileCallback.onError(response.errorBody().toString());
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                loginCallback.onLoginError("Something went");
+                profileCallback.onError("Something went");
             }
         });
     }

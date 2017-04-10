@@ -1,9 +1,5 @@
 package com.example.rosen.gitconnections.data;
 
-import com.example.rosen.gitconnections.application.App;
-import com.example.rosen.gitconnections.data.local.GitConnectionsLocalDataSource;
-import com.example.rosen.gitconnections.data.remote.GitConnectionsRemoteDataSource;
-
 /**
  * Created by rosen on 09.04.17.
  */
@@ -29,8 +25,8 @@ public class GitConnectionsRepository implements GitConnectionsDataSource {
 
 
     @Override
-    public void login(String userName, LoginCallback loginCallback) {
-        mRemoteDataSource.login(userName, loginCallback);
+    public void getUserProfile(String userName, ProfileCallback profileCallback) {
+        mRemoteDataSource.getUserProfile(userName, profileCallback);
     }
 
     @Override

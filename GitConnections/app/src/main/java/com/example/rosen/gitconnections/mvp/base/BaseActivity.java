@@ -41,7 +41,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
 
 //    private boolean checkAuthenticated() {
 //        if (!(this instanceof LoginActivity)) {
-//            // check if login
+//            // check if getUserProfile
 //            if (!mApplication.isAuthenticated()) {
 //                Intent intent = new Intent(BaseActivity.this, mApplication.getLoginClass());
 //                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
