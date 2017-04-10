@@ -40,11 +40,11 @@ public class GitConnectionsLocalDataSource implements GitConnectionsDataSource {
 
     @Override
     public void getUserFollowers(String userName, UserFollowersCallback callback) {
-//        callback.onSuccess(dataBaseHelper.getUser(userName).getFollowers());
+        callback.onSuccess(dataBaseHelper.getUser(userName).getFollowerses());
     }
 
     @Override
     public void getUserFollowing(String userName, UserFollowingCallback callback) {
-//        callback.onSuccess(dataBaseHelper.getUser(userName).getFollowing());
+        callback.onSuccess(dataBaseHelper.getUser(userName).getFollowings());
     }
 }

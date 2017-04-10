@@ -6,6 +6,7 @@ import com.example.rosen.gitconnections.application.App;
 import com.example.rosen.gitconnections.model.DaoMaster;
 import com.example.rosen.gitconnections.model.DaoSession;
 import com.example.rosen.gitconnections.model.RepositoryDetails;
+import com.example.rosen.gitconnections.model.RepositoryDetailsDao;
 import com.example.rosen.gitconnections.model.User;
 import com.example.rosen.gitconnections.model.UserDao;
 import com.example.rosen.gitconnections.model.UserFollowers;
@@ -28,6 +29,7 @@ public class DataBaseHelper {
     private static UserDao userDao;
     private static UserFollowersDao userFollowersDao;
     private static UserFollowingDao userFollowingDao;
+    private static RepositoryDetailsDao repositoryDetailsDao;
 
     private DataBaseHelper() {
         helper = new DaoMaster.DevOpenHelper(App.getInstance(), "git-connections-db", null);
@@ -54,14 +56,16 @@ public class DataBaseHelper {
         return userDao.queryBuilder().where(UserDao.Properties.UserName.eq(userName)).list().get(0);
     }
 
-    public void insertOrReplaceFollowing(UserFollowing userFollowing){
-        userFollowingDao = daoSession.getUserFollowingDao();
-        userFollowingDao.insertOrReplace(userFollowing);
+    public void inserOrReplaceUserRepos(List<RepositoryDetails> body){
+        daoSession.getRepositoryDetailsDao().insertOrReplaceInTx(body);
     }
 
-    public void insertOrReplaceFollowers(UserFollowers userFollowers){
-        userFollowersDao = daoSession.getUserFollowersDao();
-        userFollowersDao.insertOrReplace(userFollowers);
+    public void insertOrReplaceFollowing(List<UserFollowing> body){
+        daoSession.getUserFollowingDao().insertOrReplaceInTx(body);
+    }
+
+    public void insertOrReplaceFollowers(List<UserFollowers> body){
+        daoSession.getUserFollowersDao().insertOrReplaceInTx(body);
     }
 
     public void insertOrReplaceUser(User user) {
@@ -70,18 +74,21 @@ public class DataBaseHelper {
     }
 
     public void saveUserRepos(String userName, List<RepositoryDetails> body) {
+        inserOrReplaceUserRepos(body);
         User user = getUser(userName);
         user.setRepositoryDetails(body);
         insertOrReplaceUser(user);
     }
 
     public void saveUserFollowing(String userName, List<UserFollowing> body) {
+        insertOrReplaceFollowing(body);
         User user = getUser(userName);
         user.setFollowings(body);
         insertOrReplaceUser(user);
     }
 
     public void saveUserFollowers(String userName, List<UserFollowers> body) {
+        insertOrReplaceFollowers(body);
         User user = getUser(userName);
         user.setFollowerses(body);
         insertOrReplaceUser(user);

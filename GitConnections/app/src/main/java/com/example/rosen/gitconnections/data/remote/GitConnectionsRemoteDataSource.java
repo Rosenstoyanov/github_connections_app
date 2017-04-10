@@ -3,9 +3,10 @@ package com.example.rosen.gitconnections.data.remote;
 import com.example.rosen.gitconnections.data.GitConnectionsDataSource;
 import com.example.rosen.gitconnections.data.remote.service.GitConnectionsService;
 import com.example.rosen.gitconnections.data.remote.service.RestClient;
-import com.example.rosen.gitconnections.model.FollowersFollowingUsers;
 import com.example.rosen.gitconnections.model.RepositoryDetails;
 import com.example.rosen.gitconnections.model.User;
+import com.example.rosen.gitconnections.model.UserFollowers;
+import com.example.rosen.gitconnections.model.UserFollowing;
 
 import java.util.List;
 
@@ -71,9 +72,9 @@ public class GitConnectionsRemoteDataSource implements GitConnectionsDataSource 
 
     @Override
     public void getUserFollowers(final String userName, final UserFollowersCallback callback) {
-        mGitConnectionsService.getUserFollowers(userName).enqueue(new Callback<List<FollowersFollowingUsers>>() {
+        mGitConnectionsService.getUserFollowers(userName).enqueue(new Callback<List<UserFollowers>>() {
             @Override
-            public void onResponse(Call<List<FollowersFollowingUsers>> call, Response<List<FollowersFollowingUsers>> response) {
+            public void onResponse(Call<List<UserFollowers>> call, Response<List<UserFollowers>> response) {
                 if (response.isSuccessful()){
                     callback.onSuccess(response.body());
                 } else
@@ -81,7 +82,7 @@ public class GitConnectionsRemoteDataSource implements GitConnectionsDataSource 
             }
 
             @Override
-            public void onFailure(Call<List<FollowersFollowingUsers>> call, Throwable t) {
+            public void onFailure(Call<List<UserFollowers>> call, Throwable t) {
                 callback.onError("Something went");
             }
         });
@@ -89,9 +90,9 @@ public class GitConnectionsRemoteDataSource implements GitConnectionsDataSource 
 
     @Override
     public void getUserFollowing(String userName, final UserFollowingCallback callback) {
-        mGitConnectionsService.getUserFollowing(userName).enqueue(new Callback<List<FollowersFollowingUsers>>() {
+        mGitConnectionsService.getUserFollowing(userName).enqueue(new Callback<List<UserFollowing>>() {
             @Override
-            public void onResponse(Call<List<FollowersFollowingUsers>> call, Response<List<FollowersFollowingUsers>> response) {
+            public void onResponse(Call<List<UserFollowing>> call, Response<List<UserFollowing>> response) {
                 if (response.isSuccessful()){
                     callback.onSuccess(response.body());
                 } else
@@ -99,7 +100,7 @@ public class GitConnectionsRemoteDataSource implements GitConnectionsDataSource 
             }
 
             @Override
-            public void onFailure(Call<List<FollowersFollowingUsers>> call, Throwable t) {
+            public void onFailure(Call<List<UserFollowing>> call, Throwable t) {
                 callback.onError("Something went");
             }
         });

@@ -1,8 +1,9 @@
 package com.example.rosen.gitconnections.data;
 
-import com.example.rosen.gitconnections.model.FollowersFollowingUsers;
 import com.example.rosen.gitconnections.model.RepositoryDetails;
 import com.example.rosen.gitconnections.model.User;
+import com.example.rosen.gitconnections.model.UserFollowers;
+import com.example.rosen.gitconnections.model.UserFollowing;
 
 import java.util.List;
 
@@ -29,13 +30,13 @@ public interface GitConnectionsDataSource {
     }
 
     interface UserFollowersCallback {
-        void onSuccess(List<FollowersFollowingUsers> repositories);
+        void onSuccess(List<UserFollowers> repositories);
 
         void onError(String error);
     }
 
     interface UserFollowingCallback {
-        void onSuccess(List<FollowersFollowingUsers> repositories);
+        void onSuccess(List<UserFollowing> repositories);
 
         void onError(String error);
     }
