@@ -21,6 +21,7 @@ public class RepositoryDetails {
     private Integer watchersCount;
     @SerializedName("forks_count")
     private Integer forksCount;
+    private Long userId;
 
     public RepositoryDetails(String name, String description, Integer watchersCount, Integer forksCount) {
         this.name = name;
@@ -29,14 +30,19 @@ public class RepositoryDetails {
         this.forksCount = forksCount;
     }
 
-    @Generated(hash = 1795126317)
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    @Generated(hash = 1983797414)
     public RepositoryDetails(Long repositoryId, String name, String description, Integer watchersCount,
-            Integer forksCount) {
+            Integer forksCount, Long userId) {
         this.repositoryId = repositoryId;
         this.name = name;
         this.description = description;
         this.watchersCount = watchersCount;
         this.forksCount = forksCount;
+        this.userId = userId;
     }
 
     @Generated(hash = 255653356)
@@ -81,5 +87,9 @@ public class RepositoryDetails {
 
     public void setForksCount(Integer forksCount) {
         this.forksCount = forksCount;
+    }
+
+    public Long getUserId() {
+        return this.userId;
     }
 }

@@ -36,13 +36,13 @@ public class User {
     private Integer following;
     private String userName;
 
-    @ToMany(referencedJoinProperty = "followersId")
+    @ToMany(referencedJoinProperty = "userId")
     private List<UserFollowers> followerses;
 
-    @ToMany(referencedJoinProperty = "followingId")
+    @ToMany(referencedJoinProperty = "userId")
     private List<UserFollowing> followings;
 
-    @ToMany(referencedJoinProperty = "repositoryId")
+    @ToMany(referencedJoinProperty = "userId")
     private List<RepositoryDetails> repositoryDetails;
     /** Used to resolve relations */
     @Generated(hash = 2040040024)

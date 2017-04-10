@@ -1,11 +1,10 @@
 package com.example.rosen.gitconnections.model;
 
-import com.example.rosen.gitconnections.mvp.users_list.UsersAdapter;
 import com.google.gson.annotations.SerializedName;
 
 import org.greenrobot.greendao.annotation.Entity;
-import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.annotation.Id;
 
 /**
  * Created by rosen on 10.04.17.
@@ -19,10 +18,15 @@ public class UserFollowers {
     private String name;
     @SerializedName("avatar_url")
     private String avatarUrl;
+    private Long userId;
 
     public UserFollowers(String name, String avatarUrl) {
         this.name = name;
         this.avatarUrl = avatarUrl;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     @Generated(hash = 325016258)
