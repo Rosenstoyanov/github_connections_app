@@ -1,5 +1,7 @@
 package com.example.rosen.gitconnections.data;
 
+import android.text.TextUtils;
+
 import com.example.rosen.gitconnections.db.DataBaseHelper;
 import com.example.rosen.gitconnections.model.RepositoryDetails;
 import com.example.rosen.gitconnections.model.User;
@@ -45,7 +47,9 @@ public class GitConnectionsRepository implements GitConnectionsDataSource {
             @Override
             public void onError(String error) {
                 mLocalDataSource.getUserProfile(userName, profileCallback);
-//                profileCallback.onError(error);
+                
+                if (!TextUtils.isEmpty(error))
+                    profileCallback.onError(error);
             }
         });
     }

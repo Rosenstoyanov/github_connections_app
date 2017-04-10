@@ -53,7 +53,10 @@ public class DataBaseHelper {
 
     public User getUser(String userName){
         userDao = daoSession.getUserDao();
-        return userDao.queryBuilder().where(UserDao.Properties.UserName.eq(userName)).list().get(0);
+        List<User> users = userDao.queryBuilder().where(UserDao.Properties.UserName.eq(userName)).list();
+        if (users.isEmpty())
+            return null;
+        return users.get(0);
     }
 
     public void inserOrReplaceUserRepos(List<RepositoryDetails> body, Long userId){

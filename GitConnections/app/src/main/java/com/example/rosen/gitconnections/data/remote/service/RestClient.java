@@ -15,6 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RestClient {
 
     private static GitConnectionsService sGitConnectionsService;
+    private static Retrofit sRetrofit;
 
 
     private static Retrofit getRestAdapter() {
@@ -32,8 +33,13 @@ public class RestClient {
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();
+        sRetrofit = restAdapter;
 
         return restAdapter;
+    }
+
+    public static Retrofit getsRetrofit() {
+        return sRetrofit;
     }
 
     public static GitConnectionsService getApiService() {

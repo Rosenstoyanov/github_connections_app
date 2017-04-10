@@ -7,6 +7,7 @@ import com.example.rosen.gitconnections.model.RepositoryDetails;
 import com.example.rosen.gitconnections.model.User;
 import com.example.rosen.gitconnections.model.UserFollowers;
 import com.example.rosen.gitconnections.model.UserFollowing;
+import com.example.rosen.gitconnections.utils.Utils;
 
 import java.util.List;
 
@@ -42,12 +43,13 @@ public class GitConnectionsRemoteDataSource implements GitConnectionsDataSource 
                 if (response.isSuccessful()){
                     profileCallback.onSuccess(response.body());
                 } else
-                    profileCallback.onError(response.errorBody().toString());
+                    profileCallback.onError(Utils.parseError(response).getError());
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                profileCallback.onError("Something went");
+//                profileCallback.onError("Something went");
+                profileCallback.onError("");
             }
         });
     }
@@ -60,7 +62,7 @@ public class GitConnectionsRemoteDataSource implements GitConnectionsDataSource 
                 if (response.isSuccessful()){
                     callback.onSuccess(response.body());
                 } else
-                    callback.onError(response.errorBody().toString());
+                    callback.onError(Utils.parseError(response).getError());
             }
 
             @Override
@@ -78,7 +80,7 @@ public class GitConnectionsRemoteDataSource implements GitConnectionsDataSource 
                 if (response.isSuccessful()){
                     callback.onSuccess(response.body());
                 } else
-                    callback.onError(response.errorBody().toString());
+                    callback.onError(Utils.parseError(response).getError());
             }
 
             @Override
@@ -96,7 +98,7 @@ public class GitConnectionsRemoteDataSource implements GitConnectionsDataSource 
                 if (response.isSuccessful()){
                     callback.onSuccess(response.body());
                 } else
-                    callback.onError(response.errorBody().toString());
+                    callback.onError(Utils.parseError(response).getError());
             }
 
             @Override

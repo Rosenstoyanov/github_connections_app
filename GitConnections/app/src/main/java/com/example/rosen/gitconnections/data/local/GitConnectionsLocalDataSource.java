@@ -3,6 +3,7 @@ package com.example.rosen.gitconnections.data.local;
 import com.example.rosen.gitconnections.data.GitConnectionsDataSource;
 import com.example.rosen.gitconnections.db.DataBaseHelper;
 import com.example.rosen.gitconnections.model.RepositoryDetails;
+import com.example.rosen.gitconnections.model.User;
 import com.example.rosen.gitconnections.utils.Utils;
 
 import java.util.List;
@@ -27,7 +28,9 @@ public class GitConnectionsLocalDataSource implements GitConnectionsDataSource {
 
     @Override
     public void getUserProfile(String userName, ProfileCallback profileCallback) {
-        profileCallback.onSuccess(DataBaseHelper.getInstance().getUser(userName));
+        User user = DataBaseHelper.getInstance().getUser(userName);
+        if (user != null)
+            profileCallback.onSuccess(DataBaseHelper.getInstance().getUser(userName));
     }
 
     @Override
