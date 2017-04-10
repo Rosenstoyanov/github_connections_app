@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.rosen.gitconnections">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".application.App"
@@ -12,16 +12,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".mvp.login.LoginActivity">
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".MainActivity" />
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".mvp.login.LoginActivity"/>
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".mvp.user_details.UserDetailsActivity" />
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".mvp.users_list.UsersListActivity" />
+        <activity
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme"
+            android:name=".mvp.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".mvp.user_details.UserDetailsActivity" />
-        <activity android:name=".mvp.users_list.UsersListActivity"></activity>
     </application>
 
 </manifest>

@@ -26,12 +26,6 @@ public class LoginActivity extends BaseActivity<LoginPresentor> implements Login
 
     @Override
     protected void initViews() {
-        if (AppPreferences.getUserSession(this) != null){
-            Intent intent = new Intent(this, UserDetailsActivity.class);
-            startActivity(intent);
-            finish();
-        }
-
         mPresenter = new LoginPresentor(this);
     }
 
