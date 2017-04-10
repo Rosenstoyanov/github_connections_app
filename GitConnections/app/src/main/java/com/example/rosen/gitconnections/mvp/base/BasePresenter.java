@@ -8,11 +8,11 @@ public abstract class BasePresenter {
 
     protected boolean mIsActivityRunning = false;
 
-    public void onPause(){
+    public void onStop(){
         this.mIsActivityRunning = false;
     }
 
-    public void onResume(){
+    public void onStart(){
         this.mIsActivityRunning = true;
     }
 }

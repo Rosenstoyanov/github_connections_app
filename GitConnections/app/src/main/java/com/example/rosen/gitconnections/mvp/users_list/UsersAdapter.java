@@ -1,15 +1,20 @@
 package com.example.rosen.gitconnections.mvp.users_list;
 
+import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.example.rosen.gitconnections.R;
 import com.example.rosen.gitconnections.model.FollowersFollowingUsers;
+import com.example.rosen.gitconnections.settings.Settings;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -21,6 +26,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
     private ItemClicksCallback mItemClicks;
 
     public UsersAdapter(ItemClicksCallback mItemClicks) {
+        mData = new ArrayList<>();
         this.mItemClicks = mItemClicks;
     }
 
@@ -47,6 +53,10 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
     }
 
     class UserViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        @BindView(R.id.tv_username)
+        AppCompatTextView mUserName;
+        @BindView(R.id.iv_avatar)
+        ImageView mIvAvatar;
 
         public UserViewHolder(View itemView) {
             super(itemView);
@@ -55,7 +65,15 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
         }
 
         void bind(FollowersFollowingUsers followersFollowingUsers) {
+            mUserName.setText(followersFollowingUsers.getName());
 
+            Glide.with(mIvAvatar.getContext())
+                    .load(followersFollowingUsers.getAvatarUrl())
+                    .dontAnimate()
+                    .fallback(Settings.AVATAR_PLACE_HOLDER)
+                    .placeholder(Settings.AVATAR_PLACE_HOLDER)
+                    .error(Settings.AVATAR_PLACE_HOLDER)
+                    .into(mIvAvatar);
         }
 
         @Override

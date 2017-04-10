@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,6 +24,7 @@ import com.example.rosen.gitconnections.settings.Settings;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -65,15 +67,24 @@ public class UserDetailsActivity extends BaseActivity<UserDetailsPresenter> impl
 
         mTvUsername.setText(mUser.getName());
         mTvBio.setText(mUser.getBio());
-//        mTvFollowersCount.setText(mUser.getFollowers());
-//        mTvFollowingCount.setText(mUser.getFollowing());
+        mTvFollowersCount.setText(mUser.getFollowers().toString());
+        mTvFollowingCount.setText(mUser.getFollowing().toString());
+        mTvPublicReposCount.setText(mUser.getPublicRepos().toString());
         mPresenter = new UserDetailsPresenter(this);
 
         mAdapter = new ReposAdapter();
         mPublicReposList.setLayoutManager(new LinearLayoutManager(this));
         mPublicReposList.setAdapter(mAdapter);
 
-        mPresenter.getUserRepositories(AppPreferences.getUserName(this));
+        String userName = "";
+        if (getIntent().getExtras() != null)
+            userName = getIntent().getExtras().getString(Settings.EXTRA_USERNAME);
+
+        if (TextUtils.isEmpty(userName))
+            userName = AppPreferences.getUserName(this);
+
+        mPresenter.getUserRepositories(userName);
+
     }
 
     @OnClick({R.id.tv_followers_count, R.id.tv_following_count})
@@ -83,11 +94,13 @@ public class UserDetailsActivity extends BaseActivity<UserDetailsPresenter> impl
             Intent intent = new Intent(this, UsersListActivity.class);
             Bundle bundle = new Bundle();
             bundle.putBoolean(Settings.EXTRA_OPEN_FOLLOWERS, true);
+            intent.putExtras(bundle);
             startActivity(intent);
         } else if (id == R.id.tv_following_count){
             Intent intent = new Intent(this, UsersListActivity.class);
             Bundle bundle = new Bundle();
             bundle.putBoolean(Settings.EXTRA_OPEN_FOLLOWERS, false);
+            intent.putExtras(bundle);
             startActivity(intent);
         }
 
@@ -96,7 +109,6 @@ public class UserDetailsActivity extends BaseActivity<UserDetailsPresenter> impl
 
     @Override
     public void onRepositoryDetailsSuccess(List<RepositoryDetails> repositories) {
-//        mTvPublicReposCount.setText(repositories.size());
         mAdapter.setData((ArrayList<RepositoryDetails>) repositories);
         mAdapter.notifyDataSetChanged();
     }

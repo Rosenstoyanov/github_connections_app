@@ -26,17 +26,17 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
     protected abstract void initViews();
 
     @Override
-    protected void onPause() {
-        super.onPause();
+    protected void onStart() {
+        super.onStart();
         if (mPresenter != null)
-            mPresenter.onPause();
+            mPresenter.onStart();
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
+    protected void onStop() {
+        super.onStop();
         if (mPresenter != null)
-            mPresenter.onResume();
+            mPresenter.onStop();
     }
 
 //    private boolean checkAuthenticated() {

@@ -25,7 +25,6 @@ public class UsersListActivity extends BaseActivity<UsersListPresentor>
     RecyclerView mUsersList;
 
     private UsersAdapter mAdapter;
-    private User mUser;
 
     @Override
     protected int getLayoutId() {
@@ -35,16 +34,15 @@ public class UsersListActivity extends BaseActivity<UsersListPresentor>
     @Override
     protected void initViews() {
         mPresenter = new UsersListPresentor(this);
-        mUser = AppPreferences.getUserProfile(this);
         mAdapter = new UsersAdapter(this);
         mUsersList.setLayoutManager(new LinearLayoutManager(this));
         mUsersList.setAdapter(mAdapter);
 
         Bundle bundle = getIntent().getExtras();
         if (bundle.getBoolean(Settings.EXTRA_OPEN_FOLLOWERS))
-            mPresenter.getFollowersList(mUser.getName());
+            mPresenter.getFollowersList(AppPreferences.getUserName(this));
         else
-            mPresenter.getFollowingList(mUser.getName());
+            mPresenter.getFollowingList(AppPreferences.getUserName(this));
     }
 
     @Override
@@ -63,5 +61,7 @@ public class UsersListActivity extends BaseActivity<UsersListPresentor>
         Intent intent = new Intent(this, UserDetailsActivity.class);
         Bundle bundle = new Bundle();
         bundle.putString(Settings.EXTRA_USERNAME, followersFollowingUsers.getName());
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 }
