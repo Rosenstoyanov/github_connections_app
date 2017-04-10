@@ -1,5 +1,9 @@
 package com.example.rosen.gitconnections.data;
 
+import android.app.Application;
+
+import com.example.rosen.gitconnections.application.App;
+
 /**
  * Created by rosen on 09.04.17.
  */
