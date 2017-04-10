@@ -1,6 +1,5 @@
 package com.example.rosen.gitconnections.application;
 
-import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
@@ -13,7 +12,7 @@ import com.example.rosen.gitconnections.preference.AppPreferences;
 /**
  * Created by rosen on 09.04.17.
  */
-//TODO: loaders NavigationUtils styles AbstractImageLoader offlineMode errorParsing
+//TODO: loaders NavigationUtils styles AbstractImageLoader errorParsing
 public class App extends Application {
 
     private static App instance;

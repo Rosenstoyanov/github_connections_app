@@ -42,18 +42,4 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         if (mPresenter != null)
             mPresenter.onStop();
     }
-
-//    private boolean checkAuthenticated() {
-//        if (!(this instanceof LoginActivity)) {
-//            // check if getUserSession
-//            if (!mApplication.isAuthenticated()) {
-//                Intent intent = new Intent(BaseActivity.this, mApplication.getLoginClass());
-//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                startActivity(intent);
-//                finish();
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
 }

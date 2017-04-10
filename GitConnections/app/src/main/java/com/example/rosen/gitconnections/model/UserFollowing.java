@@ -29,11 +29,13 @@ public class UserFollowing {
         this.userId = userId;
     }
 
-    @Generated(hash = 978204332)
-    public UserFollowing(Long followingId, String name, String avatarUrl) {
+    @Generated(hash = 307593395)
+    public UserFollowing(Long followingId, String name, String avatarUrl,
+            Long userId) {
         this.followingId = followingId;
         this.name = name;
         this.avatarUrl = avatarUrl;
+        this.userId = userId;
     }
 
     @Generated(hash = 1479098381)
@@ -62,5 +64,9 @@ public class UserFollowing {
 
     public void setAvatarUrl(String avatarUrl) {
         this.avatarUrl = avatarUrl;
+    }
+
+    public Long getUserId() {
+        return this.userId;
     }
 }
