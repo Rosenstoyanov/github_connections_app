@@ -6,6 +6,7 @@ import com.example.rosen.gitconnections.data.remote.service.RestClient;
 import com.example.rosen.gitconnections.model.FollowersFollowingUsers;
 import com.example.rosen.gitconnections.model.RepositoryDetails;
 import com.example.rosen.gitconnections.model.User;
+import com.example.rosen.gitconnections.utils.Utils;
 
 import java.util.List;
 
@@ -56,9 +57,11 @@ public class GitConnectionsRemoteDataSource implements GitConnectionsDataSource 
         mGitConnectionsService.getUserRepositoies(userName).enqueue(new Callback<List<RepositoryDetails>>() {
             @Override
             public void onResponse(Call<List<RepositoryDetails>> call, Response<List<RepositoryDetails>> response) {
-                if (response.isSuccessful())
-                    callback.onSuccess(response.body());
-                else
+                if (response.isSuccessful()){
+                    List<RepositoryDetails> list = response.body();
+                    Utils.sortRepos(list);
+                    callback.onSuccess(list);
+                } else
                     callback.onError(response.errorBody().toString());
             }
 
