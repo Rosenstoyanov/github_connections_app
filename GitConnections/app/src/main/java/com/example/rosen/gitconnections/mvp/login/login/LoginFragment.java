@@ -64,6 +64,7 @@ public class LoginFragment extends BaseFragment<LoginPresenter> implements Login
 
     @Override
     public void showLoader() {
+        mActivity.hideSoftKeyboard();
         mActivity.showLoader();
     }
 

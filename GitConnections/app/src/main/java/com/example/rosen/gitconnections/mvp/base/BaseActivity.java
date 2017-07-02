@@ -1,5 +1,6 @@
 package com.example.rosen.gitconnections.mvp.base;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -7,10 +8,13 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ProgressBar;
 
 import com.example.rosen.gitconnections.R;
 import com.example.rosen.gitconnections.db.DataBaseHelper;
+import com.example.rosen.gitconnections.widgets.DimmedProgressBar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,7 +28,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
     protected DataBaseHelper mDataBaseHelper;
     @Nullable
     @BindView(R.id.progress)
-    ProgressBar progressBar;
+    DimmedProgressBar progressBar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -70,5 +74,19 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         super.onStop();
         if (mPresenter != null)
             mPresenter.onStop();
+    }
+
+    public void hideSoftKeyboard() {
+
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+        else {
+            getWindow().setSoftInputMode(
+                    WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
+            );
+        }
     }
 }
