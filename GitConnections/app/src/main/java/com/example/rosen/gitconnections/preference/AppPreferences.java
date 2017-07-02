@@ -15,7 +15,7 @@ public class AppPreferences {
     private static Gson sGson = new Gson();
 
     private static SharedPreferences getPrefs(Context context) {
-        return context.getSharedPreferences(PREF_NAME, context.MODE_PRIVATE);
+        return context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
     }
 
     private static void putString(Context context, String key, String text) {
