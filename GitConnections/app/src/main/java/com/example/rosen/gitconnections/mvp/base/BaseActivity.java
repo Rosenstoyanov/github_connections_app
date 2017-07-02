@@ -2,10 +2,17 @@ package com.example.rosen.gitconnections.mvp.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.ProgressBar;
 
+import com.example.rosen.gitconnections.R;
 import com.example.rosen.gitconnections.db.DataBaseHelper;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -15,6 +22,9 @@ import butterknife.ButterKnife;
 public abstract class BaseActivity<T extends BasePresenter> extends AppCompatActivity {
     protected T mPresenter;
     protected DataBaseHelper mDataBaseHelper;
+    @Nullable
+    @BindView(R.id.progress)
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -23,6 +33,25 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         ButterKnife.bind(this);
         mDataBaseHelper = DataBaseHelper.getInstance();
         initViews();
+    }
+
+    public void showLoader(){
+        if (progressBar != null)
+            progressBar.setVisibility(View.VISIBLE);
+    }
+
+    public void hideLoader(){
+        if (progressBar != null)
+            progressBar.setVisibility(View.GONE);
+    }
+
+    protected void openFragment(Fragment fragment, boolean addToBackStack){
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.grp_container, fragment);
+        if (addToBackStack)
+            fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+
     }
 
     protected abstract int getLayoutId();

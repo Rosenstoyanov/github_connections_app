@@ -5,4 +5,7 @@ package com.example.rosen.gitconnections.mvp.base;
  */
 
 public interface BaseView {
+    void showLoader();
+
+    void hideLoader();
 }
